@@ -36,7 +36,7 @@ resource "azurerm_private_endpoint" "this_managed_dns_zone_groups" {
 }
 
 # The PE resource when we are managing **not** the private_dns_zone_group block
-# An example use case is customers using Azure Policy to create private DNS zones
+# An example use case is using Azure Policy to create private DNS zones
 # e.g. <https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/azure-best-practices/private-link-and-dns-integration-at-scale>
 resource "azurerm_private_endpoint" "this_unmanaged_dns_zone_groups" {
   for_each = { for k, v in var.private_endpoints : k => v if !var.private_endpoints_manage_dns_zone_group }
